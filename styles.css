@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kashvi Shervegar</title>
+    <link rel="icon" type="image/x-icon" href=""> <!--insert icon ref here-->>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+
+<body>
+    <!--LOGO/HOME-->
+    <header class="logo">
+        <div>k</div>
+    </header>
+
+        <!-- Desktop Navigation -->
+    <nav class="nav-desktop">
+        <a href="#curiosities">Curiosities</a>
+        <a href="#about">About</a>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <nav class="nav-mobile">
+        <a href="#curiosities">Curiosities</a>
+        <a href="#about">About</a>
+    </nav>
+
+        <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-wrapper">
+
+                <!-- Left Column -->
+            <div class="left-column">
+                <div class="small-image" aria-label="Illustration placeholder"></div><br>
+                <p class="intro-text">
+                Hi there! I am Kashvi Shervegar from Bangalore, now based in New York City.
+                Kashvi is an multidisciplinary designer with focus on Publication Design, Motion, typography,
+                &amp; making people smile.
+                </p>
+            </div>
+
+                <!-- Right Column -->
+            <div class="right-column">
+                <div class="large-image" aria-label="Main artwork placeholder"></div>
+            </div>
+        </div>        
+    </main>
+        <footer class="footer">
+            <div class="footer-content">
+                <div>
+                    <span id="copy">All Work On Site © Kashvi Shervegar 2026 <a href="mailto:kashvi.shervegar@gmail.com">[kashvi.shervegar@gmail.com]</a></span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
