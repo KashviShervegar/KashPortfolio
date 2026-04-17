@@ -259,24 +259,7 @@
   </div>
 
   <script>
-    // ── Clock ──
-    const clock = document.getElementById('clock');
-    function tick() {
-      const now = new Date();
-      clock.textContent = now.toTimeString().slice(0,8);
-    }
-    tick();
-    setInterval(tick, 1000);
-
-    // ── DVD Bounce Logic ──
-    const dvd = document.getElementById('dvd');
-    const card = document.getElementById('dvd-card');
-
-    const W = () => window.innerWidth;
-    const H = () => window.innerHeight;
-    const dw = () => dvd.offsetWidth;
-    const dh = () => dvd.offsetHeight;
-
+    
     // Color palette — cycling on bounce
     const colors = [
       '#edbe15',
