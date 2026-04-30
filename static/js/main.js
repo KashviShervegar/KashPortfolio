@@ -42,16 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }, { passive: true });
     }
 
-    // Mobile: swipe up/down on the animation container
-    let touchStartY = 0;
-    animContainer.addEventListener('touchstart', (e) => {
-      touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-    animContainer.addEventListener('touchmove', (e) => {
-      const delta = touchStartY - e.touches[0].clientY;
-      touchStartY = e.touches[0].clientY;
-      advanceFrames(delta * 1.5);
-    }, { passive: true });
   }
 
   // ── Active nav link on interior pages ────────
@@ -61,5 +51,18 @@ document.addEventListener('DOMContentLoaded', () => {
       link.classList.add('active');
     }
   });
+
+  // ── Force-play sidequest videos on mobile ────
+  if (window.innerWidth <= 768) {
+    const videos = document.querySelectorAll('.sidequests-grid video');
+    if (videos.length > 0) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.play();
+        });
+      }, { threshold: 0.1 });
+      videos.forEach(v => { v.play().catch(() => {}); observer.observe(v); });
+    }
+  }
 
 });

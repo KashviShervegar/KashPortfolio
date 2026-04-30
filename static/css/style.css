@@ -663,6 +663,11 @@ body.about .site-main {
   .lp-footer {
     padding: 16px 24px 20px;
     border-top: 1px solid var(--color-rule);
+    flex-direction: column-reverse;
+  }
+
+  .scroll-hint {
+    display: none;
   }
 
   .landing-panel-right {
@@ -767,7 +772,12 @@ body.about .site-main {
   }
 
   .about-make {
-    height: 336px;
+    display: none;
+  }
+
+  .about-photo-stack {
+    width: 72%;
+    max-width: 280px;
   }
 
   .about-text-col {
