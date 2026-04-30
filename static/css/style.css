@@ -1,0 +1,812 @@
+/* =============================================
+   KASHVI SHERVEGAR â€” PORTFOLIO
+   ============================================= */
+
+@font-face {
+  font-family: 'Enclosed';
+  src: url('../fonts/Enclosed-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+:root {
+  --color-bg:          #ffffff;
+  --color-text:        #1a1a1a;
+  --color-text-light:  #888888;
+  --color-placeholder: #9e7b7b;
+  --color-rule:        #e2e2e2;
+
+  --font-logo: 'Enclosed', serif;       /* logo ONLY */
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  --left-w: 33vw;   /* left panel width */
+}
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;           /* landing page never scrolls; interior overrides below */
+}
+
+html:has(body.interior) {
+  overflow: auto;
+  height: auto;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* =============================================
+   LANDING PAGE â€” fixed left, scroll right
+   ============================================= */
+
+.landing-page {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/*LEFT PANEL” fixed, full height, never scrolls */
+.landing-panel-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--left-w);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  background: var(--color-bg);
+  z-index: 10;
+  border-right: 1px solid var(--color-rule);
+}
+
+/* Top section: logo + nav */
+.lp-header {
+  padding: 28px 64px 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ONLY element using Enclosed font */
+.logo-text {
+  font-family: var(--font-logo);
+  font-size: 72px;
+  line-height: 1;
+  color: var(--color-text);
+  letter-spacing: -2px;
+}
+
+.lp-nav {
+  display: contents;
+}
+
+.lp-nav a {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: opacity 0.18s;
+}
+
+.lp-nav a:hover {
+  opacity: 0.4;
+}
+
+/* Middle section: Theo circle + scroll hint, vertically centred */
+.lp-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px 32px;
+}
+
+.animation-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  flex-shrink: 0;
+}
+
+.animation-container img,
+.animation-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.animation-placeholder-text {
+  color: rgba(255,255,255,0.7);
+  font-size: 11px;
+  text-align: center;
+  padding: 20px;
+  line-height: 1.65;
+}
+
+.scroll-hint {
+  font-size: 12px;
+  color: var(--color-text-light);
+  letter-spacing: 0.02em;
+}
+
+/* Bottom section: email + copyright */
+.lp-footer {
+  padding: 0 32px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 11px;
+  line-height: 1.9;
+  color: var(--color-text);
+}
+
+.lp-footer a {
+  font-weight: 600;
+}
+
+.lp-footer a:hover {
+  opacity: 0.5;
+}
+
+/*RIGHT PANEL” offset by left width, scrolls vertically â”€â”€ */
+.landing-panel-right {
+  margin-left: var(--left-w);
+  width: calc(100vw - var(--left-w));
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Bio strip” sits at the very top of the right panel */
+.lp-bio {
+  padding: 38px 44px;
+  font-size: 13px;
+  line-height: 1.65;
+  text-align: right;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-rule);
+  flex-shrink: 0;
+}
+
+/* Projects stack */
+.lp-projects {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 44px 48px;
+  gap: 20px;
+}
+
+.project-preview-link {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.project-preview-link img,
+.project-preview-link video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-preview-link:hover img,
+.project-preview-link:hover video {
+  transform: scale(1.03);
+}
+
+.project-preview-link.portrait img {
+  object-position: right center;
+}
+
+/* Dark scrim overlay on hover */
+.project-preview-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.project-preview-link:hover::after {
+  opacity: 1;
+}
+
+.project-preview-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.project-preview-link:hover .project-preview-label {
+  opacity: 1;
+}
+
+.project-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  background: var(--color-placeholder);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-placeholder span {
+  color: rgba(255,255,255,0.5);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+/* =============================================
+   INTERIOR PAGES â€” normal scroll, shared header
+   ============================================= */
+
+/* Interior pages restore normal scroll */
+body.interior {
+  overflow: auto;
+  height: auto;
+}
+
+/* About page: single viewport, no scroll */
+body.about {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+body.about .site-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+body.about .site-main {
+  flex: 1;
+  min-height: 0;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.header-inner {
+  display: grid;
+  grid-template-columns: 33% 67%;
+}
+
+.header-left {
+  padding: 28px 32px 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.header-right {
+  padding: 22px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.header-nav-right {
+  display: flex;
+  gap: 32px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.header-nav-right a {
+  opacity: 0.4;
+  transition: opacity 0.18s;
+}
+
+.header-nav-right a:hover,
+.header-nav-right a.active {
+  opacity: 1;
+}
+
+.site-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* =============================================
+   FOOTER (interior pages)
+   ============================================= */
+.site-footer {
+  border-top: 1px solid var(--color-rule);
+  padding: 28px 32px;
+}
+
+.footer-left {
+  font-size: 11px;
+  line-height: 2;
+  color: var(--color-text);
+}
+
+.footer-left a { font-weight: 600; }
+
+/* =============================================
+   PROJECT PAGE
+   ============================================= */
+.project-page-layout {
+  display: grid;
+  grid-template-columns: 33% 67%;
+  min-height: calc(100vh - 100px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.project-info {
+  padding: 48px 28px 48px 32px;
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.project-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.project-description {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--color-text);
+}
+
+.project-description p + p {
+  margin-top: 14px;
+}
+
+.project-meta {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-rule);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.project-visuals {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 44px 48px;
+  gap: 20px;
+}
+
+.visual-item img,
+.visual-item video {
+  width: 100%;
+  display: block;
+}
+
+.visual-item video {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.visual-placeholder {
+  background: var(--color-placeholder);
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visual-placeholder span {
+  color: rgba(255,255,255,0.5);
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+/* =============================================
+   ABOUT PAGE
+   ============================================= */
+.about-layout {
+  display: grid;
+  grid-template-columns: 33% 67%;
+  height: 100%;
+}
+
+.about-photo-col {
+  padding: 0 28px 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.about-photo-stack {
+  position: relative;
+  width: 85%;
+  max-width: 326px;
+  margin-top: 30px;
+}
+
+.about-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+/* Rotated 90deg CW, centred on the top of the head, behind the photo */
+.about-make {
+  position: absolute;
+  top: -8%;
+  left: 43%;
+  height: 498px;   /* controls visual width after rotation */
+  width: auto;
+  transform: translate(-50%, -50%) rotate(88deg);
+  z-index: 1;
+  object-fit: contain;
+}
+
+.about-text-col {
+  padding: 48px 44px 48px 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-bio {
+  font-size: 13px;
+  line-height: 1.85;
+  text-align: right;
+  color: var(--color-text);
+}
+
+.about-bio strong { font-weight: 700; }
+
+.about-bio p + p { margin-top: 16px; }
+
+.about-links {
+  margin-top: 44px;
+  display: flex;
+  gap: 28px;
+  justify-content: flex-end;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.about-links a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: opacity 0.18s;
+}
+
+.about-links a:hover { opacity: 0.4; }
+
+.about-resume {
+  margin-top: auto;
+  padding-top: 44px;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.about-resume a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: opacity 0.18s;
+}
+
+.about-resume a:hover { opacity: 0.4; }
+
+.about-footer {
+  border-top: 1px solid var(--color-rule);
+  padding: 28px 32px;
+  flex-shrink: 0;
+}
+
+.about-footer p {
+  font-size: 11px;
+  line-height: 2;
+}
+
+/* =============================================
+   SIDE QUESTS PAGE
+   ============================================= */
+.sidequests-grid {
+  columns: 3;
+  column-gap: 6px;
+  padding: 40px 6px 6px;
+}
+
+.sidequest-item {
+  break-inside: avoid;
+  margin-bottom: 6px;
+  overflow: hidden;
+}
+
+.sidequest-item img,
+.sidequest-item video {
+  width: 100%;
+  display: block;
+}
+
+/* =============================================
+   STOP MOTION FRAMES
+   ============================================= */
+.animation-container .frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.08s;
+}
+
+.animation-container .frame.active { opacity: 1; }
+
+/* =============================================
+   UTILITY
+   ============================================= */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
+
+/* =============================================
+   MOBILE â€” max-width: 768px
+   ============================================= */
+@media (max-width: 768px) {
+
+  /* Allow all pages to scroll on mobile */
+  html, body {
+    overflow: auto;
+    height: auto;
+  }
+
+  /* LANDING PAGE */
+  .landing-page {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+
+  .landing-panel-left {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .lp-header {
+    padding: 20px 24px 16px;
+  }
+
+  .lp-center {
+    padding: 20px 24px 16px;
+    gap: 10px;
+  }
+
+  .animation-container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .lp-footer {
+    padding: 16px 24px 20px;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .landing-panel-right {
+    margin-left: 0;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .lp-bio {
+    padding: 24px;
+    text-align: left;
+  }
+
+  .lp-projects {
+    padding: 16px 16px 40px;
+    gap: 12px;
+  }
+
+  /* INTERIOR HEADER */
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-left {
+    padding: 14px 20px 12px;
+  }
+
+  .header-right {
+    padding: 12px 20px;
+  }
+
+  .logo-text {
+    font-size: 52px;
+  }
+
+  .header-nav-right {
+    gap: 20px;
+    font-size: 10px;
+  }
+
+  /*PROJECT PAGES*/
+  .project-page-layout {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .project-info {
+    position: static;
+    padding: 28px 20px 20px;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .project-title {
+    font-size: 15px;
+  }
+
+  .project-visuals {
+    padding: 16px 16px 40px;
+    gap: 12px;
+  }
+
+  /*ABOUT PAGE */
+  html:has(body.about) {
+    overflow: auto;
+    height: auto;
+  }
+
+  body.about {
+    display: block;
+    height: auto;
+    overflow: auto;
+  }
+
+  body.about .site-wrapper {
+    display: block;
+    flex: none;
+  }
+
+  body.about .site-main {
+    min-height: auto;
+  }
+
+  .about-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .about-photo-col {
+    padding: 32px 20px 16px;
+    justify-content: center;
+  }
+
+  .about-photo-stack {
+    width: 55%;
+    max-width: 220px;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-make {
+    height: 336px;
+  }
+
+  .about-text-col {
+    padding: 20px 20px 0;
+  }
+
+  .about-bio {
+    text-align: left;
+  }
+
+  .about-links {
+    justify-content: flex-start;
+    margin-top: 28px;
+  }
+
+  .about-resume {
+    justify-content: flex-start;
+    padding-top: 28px;
+    margin-top: 0;
+  }
+
+  .about-footer {
+    margin-top: 32px;
+    padding: 20px;
+  }
+
+  /*SIDEQUESTS*/
+  .sidequests-grid {
+    columns: 2;
+    padding: 20px 4px 4px;
+    column-gap: 4px;
+  }
+
+  .sidequest-item {
+    margin-bottom: 4px;
+  }
+
+  /*FOOTER*/
+  .site-footer {
+    padding: 20px;
+  }
+}
