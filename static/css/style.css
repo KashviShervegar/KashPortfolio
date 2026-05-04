@@ -651,13 +651,7 @@ body.about .site-main {
   }
 
   .lp-center {
-    padding: 20px 24px 16px;
-    gap: 10px;
-  }
-
-  .animation-container {
-    width: 150px;
-    height: 150px;
+    display: none;
   }
 
   .lp-footer {
