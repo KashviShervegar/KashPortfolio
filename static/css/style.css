@@ -702,6 +702,7 @@ body.about .site-main {
   .lp-bio {
     padding: 24px;
     text-align: left;
+    text-wrap: pretty;
   }
 
   .lp-projects {
