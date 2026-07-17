@@ -14,11 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (animContainer && frames.length > 0) {
     let currentFrame = 0;
     let accumulator = 0;
-    const THRESHOLD = 40;
+    const THRESHOLD = 70;
 
     const advanceFrames = (deltaY) => {
       accumulator += deltaY;
-
       while (accumulator >= THRESHOLD) {
         accumulator -= THRESHOLD;
         if (currentFrame < frames.length - 1) {
@@ -35,13 +34,35 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    // Desktop: wheel on left panel only
+    // Left panel wheel
     if (leftPanel) {
       leftPanel.addEventListener('wheel', (e) => {
         if (window.innerWidth > 768) advanceFrames(e.deltaY);
       }, { passive: true });
     }
 
+    // Right panel scroll — batch via rAF so rapid events don't stack
+    const rightPanel = document.querySelector('.landing-panel-right');
+    if (rightPanel && window.innerWidth > 768) {
+      let lastScrollTop = 0;
+      let pending = 0;
+      let rafQueued = false;
+
+      rightPanel.addEventListener('scroll', () => {
+        const delta = rightPanel.scrollTop - lastScrollTop;
+        lastScrollTop = rightPanel.scrollTop;
+        pending += delta * 0.65;
+
+        if (!rafQueued) {
+          rafQueued = true;
+          requestAnimationFrame(() => {
+            advanceFrames(pending);
+            pending = 0;
+            rafQueued = false;
+          });
+        }
+      }, { passive: true });
+    }
   }
 
   // ── Active nav link on interior pages ────────

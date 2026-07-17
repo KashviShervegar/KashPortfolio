@@ -604,7 +604,7 @@ body.about .site-main {
   height: 100%;
   object-fit: contain;
   opacity: 0;
-  transition: opacity 0.08s;
+  transition: opacity 0.28s ease;
 }
 
 .animation-container .frame.active { opacity: 1; }
