@@ -634,7 +634,7 @@ body.about .site-main {
 
 .project-tag {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 10.5px;
   letter-spacing: 0.06em;
   color: var(--color-text);
   background: #f0f0f0;
