@@ -506,7 +506,7 @@ body.about .site-main {
   left: 43%;
   height: 498px;   /* controls visual width after rotation */
   width: auto;
-  transform: translate(-50%, -50%) rotate(-92deg);
+  transform: translate(-50%, -50%) rotate(0deg);
   z-index: 1;
   object-fit: contain;
 }
