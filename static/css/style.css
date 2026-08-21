@@ -118,11 +118,12 @@ img, video {
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  opacity: 0.4;
   transition: opacity 0.18s;
 }
 
 .lp-nav a:hover {
-  opacity: 0.4;
+  opacity: 1;
 }
 
 /* Middle section: Theo circle + scroll hint, vertically centred */
